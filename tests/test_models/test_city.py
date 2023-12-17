@@ -7,6 +7,10 @@ from models.city import City
 class test_City(test_basemodel):
     """ """
 
+    @unittest.skip("demonstrating skipping")
+    def test_nothing(self):
+        self.fail("shouldn't happen")
+
     def __init__(self, *args, **kwargs):
         """ """
         super().__init__(*args, **kwargs)
