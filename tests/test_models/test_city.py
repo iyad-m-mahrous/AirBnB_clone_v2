@@ -11,6 +11,12 @@ class test_City(test_basemodel):
     def test_nothing(self):
         self.fail("shouldn't happen")
 
+    @unittest.skipIf(mylib.__version__ < (1, 3),
+                     "not supported in this library version")
+    def test_format(self):
+        # Tests that work for only a certain version of the library.
+        pass
+
     def __init__(self, *args, **kwargs):
         """ """
         super().__init__(*args, **kwargs)
