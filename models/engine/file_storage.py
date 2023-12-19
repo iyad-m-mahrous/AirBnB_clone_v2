@@ -9,12 +9,14 @@ class FileStorage:
     __objects = {}
 
     def delete(self, obj=None):
+        """Delete object obj"""
         try:
             del FileStorage.__objects[f"{type(obj).__name__}.{obj.id}"]
         except Exception as e:
             pass
 
     def all(self, cls=None):
+        """Return dictionary of cls bjects"""o
         if cls is not None:
             if type(cls) == str:
                 cls = eval(cls)
