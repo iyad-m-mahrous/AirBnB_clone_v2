@@ -118,7 +118,7 @@ class HBNBCommand(cmd.Cmd):
         """ Create an object of any class"""
         args = args.split()
         kwargs = (dict([(key, value) for row in args[1:]
-                  if '=' in row and row[0] != '=' and row[-1] != '"'
+                  if '=' in row and row[0] != '=' and row[-1] != ''
                   for key, value in [row.split('=')]]))
         for key in kwargs:
             if kwargs[key][0] == '"' and kwargs[key][-1] != '"':
