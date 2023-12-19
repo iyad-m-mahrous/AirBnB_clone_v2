@@ -9,22 +9,16 @@ class FileStorage:
     __objects = {}
 
     def delete(self, obj=None):
-        try:
-            del FileStorage.__objects[f"{type(obj).__name__}.{obj.id}"]
-        except Exception as e:
-            pass
+        if obj:
+            del FileStorage.__objects[obj.id]
 
     def all(self, cls=None):
-        if cls is not None:
-            if type(cls) == str:
-                cls = eval(cls)
-            new_dict = {}
-            for key, value in FileStorage.__objects.items():
-                if type(value) == cls:
-                    new_dict[key] = value
-            return new_dict
-        return FileStorage.__objects
         """Returns a dictionary of models currently in storage"""
+        return (FileStorage.__objects if not cls or not FileStorage.__objects
+                else [{key: value for key, value in
+                      FileStorage.__objects.items()
+                      if type(value) == cls or type(value) == eval(cls)}])
+
     def new(self, obj):
         """Adds new object to storage dictionary"""
         self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
