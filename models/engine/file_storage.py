@@ -16,7 +16,7 @@ class FileStorage:
             pass
 
     def all(self, cls=None):
-        """Return dictionary of cls bjects"""o
+        """Return dictionary of cls bjects"""
         if cls is not None:
             if type(cls) == str:
                 cls = eval(cls)
