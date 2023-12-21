@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Defines the HBNB console."""
 import cmd
-from shlex import split
 from models import storage
 from datetime import datetime
 from models.base_model import BaseModel
@@ -150,7 +149,7 @@ class HBNBCommand(cmd.Cmd):
         try:
             if not line:
                 raise SyntaxError()
-            my_list = split(line, " ")
+            my_list = line.split(" ")
             if my_list[0] not in self.__classes:
                 raise NameError()
             if len(my_list) < 2:
@@ -187,7 +186,7 @@ class HBNBCommand(cmd.Cmd):
         """
         counter = 0
         try:
-            my_list = split(line, " ")
+            my_list = line.split(" ")
             if my_list[0] not in self.__classes:
                 raise NameError()
             objects = storage.all()
